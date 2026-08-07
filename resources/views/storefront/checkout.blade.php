@@ -24,7 +24,12 @@
             </div>
             <input type="text" name="phone" value="{{ old('phone') }}" placeholder="{{ __('storefront.phone') }}" required class="w-full border border-border rounded-xl px-4 py-3.5 text-sm mb-4">
             <input type="text" name="address" value="{{ old('address') }}" placeholder="{{ __('storefront.address') }}" required class="w-full border border-border rounded-xl px-4 py-3.5 text-sm mb-4">
-            <input type="text" name="city" value="{{ old('city') }}" placeholder="{{ __('storefront.city') }}" required class="w-full border border-border rounded-xl px-4 py-3.5 text-sm mb-4">
+            <select name="city" required class="w-full border border-border rounded-xl px-4 py-3.5 text-sm mb-4 bg-white">
+                <option value="" disabled {{ old('city') ? '' : 'selected' }}>{{ __('storefront.city') }}</option>
+                @foreach (['Ariana','Béja','Ben Arous','Bizerte','Gabès','Gafsa','Jendouba','Kairouan','Kasserine','Kébili','Le Kef','Mahdia','Manouba','Médenine','Monastir','Nabeul','Sfax','Sidi Bouzid','Siliana','Sousse','Tataouine','Tozeur','Tunis','Zaghouan'] as $city)
+                    <option value="{{ $city }}" {{ old('city') === $city ? 'selected' : '' }}>{{ $city }}</option>
+                @endforeach
+            </select>
             <textarea name="notes" placeholder="{{ __('storefront.notes') }}" rows="3" class="w-full border border-border rounded-xl px-4 py-3.5 text-sm resize-y">{{ old('notes') }}</textarea>
         </div>
 
