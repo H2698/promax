@@ -109,10 +109,12 @@
 
     function render(phaseIn) {
         const s = slides[idx];
+        const box = el.parentElement.parentElement;
+        const k = Math.min(1, box.clientHeight * 0.72 / s.width);
         el.style.backgroundImage = `url('/assets/${s.image}')`;
-        el.style.width = s.width + 'px';
-        el.style.height = s.width + 'px';
-        el.style.transform = `translate(-50%, calc(-50% + ${s.offset}px)) scale(${phaseIn ? 1 : 0.96})`;
+        el.style.width = Math.round(s.width*k) + 'px';
+        el.style.height = Math.round(s.width*k) + 'px';
+        el.style.transform = `translate(-50%, calc(-50% + ${Math.round(s.offset*k)}px)) scale(${phaseIn ? 1 : 0.96})`;
         el.style.opacity = phaseIn ? 1 : 0;
     }
 
