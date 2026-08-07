@@ -14,8 +14,13 @@ function paintWishlistButtons() {
     const ids = getWishlist();
     document.querySelectorAll('[data-wishlist-toggle]').forEach((btn) => {
         const id = Number(btn.dataset.wishlistToggle);
-        btn.classList.toggle('is-wishlisted', ids.includes(id));
-        btn.style.color = ids.includes(id) ? '#F4B321' : '';
+        const active = ids.includes(id);
+        btn.classList.toggle('is-wishlisted', active);
+        const svg = btn.querySelector('svg');
+        if (svg) {
+            svg.style.stroke = active ? '#DC2626' : '#111111';
+            svg.style.fill = active ? '#DC2626' : 'none';
+        }
     });
 }
 
