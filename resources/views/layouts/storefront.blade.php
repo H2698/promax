@@ -40,8 +40,7 @@
         <nav class="hidden md:flex items-center gap-5 lg:gap-10">
             <a href="{{ route('home') }}" class="text-[15px] font-semibold hover:text-gold">{{ __('storefront.nav_home') }}</a>
             <a href="{{ url('/boutique') }}" class="text-[15px] font-semibold hover:text-gold">{{ __('storefront.nav_collections') }}</a>
-            <span class="text-[15px] font-semibold text-muted cursor-default">{{ __('storefront.nav_about') }}</span>
-            <span class="text-[15px] font-semibold text-muted cursor-default">{{ __('storefront.nav_contact') }}</span>
+            <a href="{{ url('/order/track') }}" class="text-[15px] font-semibold hover:text-gold">{{ __('storefront.track_order') }}</a>
         </nav>
 
         <div class="flex items-center gap-4 md:gap-5">
@@ -67,9 +66,6 @@
                 @endif
             </a>
 
-            <a href="{{ url('/order/track') }}" aria-label="{{ __('storefront.track_order') }}">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c0-4 4-6 8-6s8 2 8 6"></path></svg>
-            </a>
         </div>
     </div>
 
