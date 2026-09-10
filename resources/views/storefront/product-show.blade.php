@@ -15,13 +15,13 @@
     <div class="flex flex-col md:flex-row gap-10 md:gap-14 mb-16 md:mb-20">
         <div class="flex-1 max-w-full md:max-w-[480px]">
             <div class="bg-cream rounded-3xl aspect-square flex items-center justify-center mb-4 overflow-hidden">
-                <div id="pdp-main-image" class="w-4/5 h-4/5 bg-center bg-contain bg-no-repeat" @if($primary) style="background-image:url('{{ asset('uploads/'.$primary->path) }}')" @endif></div>
+                <div id="pdp-main-image" class="w-4/5 h-4/5 bg-center bg-contain bg-no-repeat" @if($primary) style="background-image:url('{{ $primary->url() }}')" @endif></div>
             </div>
             <div class="flex gap-3 flex-wrap">
                 @foreach ($images as $image)
-                    <button type="button" data-thumb data-src="{{ asset('uploads/'.$image->path) }}" data-color="{{ $image->product_color_id }}"
+                    <button type="button" data-thumb data-src="{{ $image->url() }}" data-color="{{ $image->product_color_id }}"
                             class="w-20 h-20 bg-cream rounded-2xl p-2.5 {{ $image->is_primary ? 'border-2 border-ink' : 'opacity-60' }}">
-                        <div class="w-full h-full bg-center bg-contain bg-no-repeat" style="background-image:url('{{ asset('uploads/'.$image->path) }}')"></div>
+                        <div class="w-full h-full bg-center bg-contain bg-no-repeat" style="background-image:url('{{ $image->url() }}')"></div>
                     </button>
                 @endforeach
             </div>

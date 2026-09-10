@@ -23,7 +23,7 @@ class WishlistController extends Controller
                 'name' => $product->name,
                 'category' => $product->category->name,
                 'priceLabel' => number_format($product->price, 3).' '.__('storefront.currency'),
-                'image' => $product->primaryImage() ? asset('uploads/'.$product->primaryImage()->path) : null,
+                'image' => $product->primaryImage() ? $product->primaryImage()->url() : null,
                 'url' => route('shop.product', $product->slug),
                 'variantId' => $product->defaultVariant()?->id,
             ]);

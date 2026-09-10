@@ -11,7 +11,7 @@ use Spatie\Translatable\HasTranslations;
 
 class Product extends Model
 {
-    use HasFactory, SoftDeletes, HasTranslations;
+    use HasFactory, HasTranslations, SoftDeletes;
 
     public array $translatable = ['name', 'description'];
 
@@ -77,6 +77,15 @@ class Product extends Model
     public function scopeFeatured($query)
     {
         return $query->where('is_featured', true);
+    }
+
+    public function scopeSearchName($query, string $search)
+    {
+        return $query->where(function ($query) use ($search) {
+            foreach (['fr', 'en', 'ar'] as $locale) {
+                $query->orWhereLike('name->'.$locale, '%'.$search.'%');
+            }
+        });
     }
 
     public function primaryImage(): ?ProductImage

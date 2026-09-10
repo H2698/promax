@@ -23,10 +23,7 @@ class ProductController extends Controller
     public function index(Request $request): View
     {
         $products = Product::with(['category', 'variants'])
-            ->when($request->filled('q'), fn ($q) => $q->whereRaw(
-                'JSON_SEARCH(name, "one", ?) IS NOT NULL',
-                ['%'.$request->string('q').'%']
-            ))
+            ->when($request->filled('q'), fn ($q) => $q->searchName($request->string('q')->toString()))
             ->latest()
             ->paginate(15)
             ->withQueryString();

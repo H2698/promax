@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Services\ImageUploadService;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -37,6 +38,6 @@ class ProductImage extends Model
 
     public function url(): string
     {
-        return asset('uploads/'.$this->path);
+        return ImageUploadService::url($this->path);
     }
 }

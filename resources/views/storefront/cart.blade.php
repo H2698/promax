@@ -17,7 +17,7 @@
                 @foreach ($lines as $line)
                     <div class="flex flex-wrap md:flex-nowrap gap-5 items-center p-5 border border-border-light rounded-[20px]">
                         <div class="w-[88px] h-[88px] bg-cream rounded-2xl shrink-0 bg-center bg-contain bg-no-repeat"
-                             @if($line->product->primaryImage()) style="background-image:url('{{ asset('uploads/'.$line->product->primaryImage()->path) }}')" @endif></div>
+                             @if($line->product->primaryImage()) style="background-image:url('{{ $line->product->primaryImage()->url() }}')" @endif></div>
                         <div class="flex-1 min-w-[140px]">
                             <div class="text-[15.5px] font-bold">{{ $line->product->name }}</div>
                             <div class="text-[13px] text-muted mt-0.5">

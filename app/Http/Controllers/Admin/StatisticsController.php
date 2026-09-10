@@ -41,7 +41,7 @@ class StatisticsController extends Controller
             ->join('products', 'order_items.product_id', '=', 'products.id')
             ->join('categories', 'products.category_id', '=', 'categories.id')
             ->selectRaw('categories.name as category_name, SUM(order_items.line_total) as revenue')
-            ->groupBy('categories.id', 'categories.name')
+            ->groupBy('categories.id')
             ->orderByDesc('revenue')
             ->get()
             ->map(fn ($row) => [

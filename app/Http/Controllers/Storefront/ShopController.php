@@ -38,7 +38,7 @@ class ShopController extends Controller
         }
 
         if ($request->filled('q')) {
-            $query->whereRaw('JSON_SEARCH(name, "one", ?) IS NOT NULL', ['%'.$request->string('q').'%']);
+            $query->searchName($request->string('q')->toString());
         }
 
         match ($request->string('sort')->toString()) {

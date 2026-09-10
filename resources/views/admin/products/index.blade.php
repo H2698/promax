@@ -28,7 +28,7 @@
             @php $stock = $product->variants->sum('stock_quantity'); @endphp
             <div class="grid grid-cols-[2.4fr_1.2fr_1fr_1fr_1fr_0.8fr] gap-3 py-4 border-b border-[#F8F8F8] items-center">
                 <div class="flex items-center gap-3.5">
-                    <div class="w-11 h-11 rounded-[10px] bg-cream bg-center bg-cover shrink-0" @if($product->primaryImage()) style="background-image:url('{{ asset('uploads/'.$product->primaryImage()->path) }}')" @endif></div>
+                    <div class="w-11 h-11 rounded-[10px] bg-cream bg-center bg-cover shrink-0" @if($product->primaryImage()) style="background-image:url('{{ $product->primaryImage()->url() }}')" @endif></div>
                     <span class="font-bold text-[14.5px]">{{ $product->name }}</span>
                 </div>
                 <div class="text-muted text-sm">{{ $product->category->name }}</div>

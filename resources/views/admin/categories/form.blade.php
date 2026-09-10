@@ -56,7 +56,7 @@
                 <label class="block text-[13px] font-bold mb-1.5">{{ __('admin.image') }}</label>
                 <input type="file" name="image" accept="image/*" class="w-full border border-border rounded-xl px-4 py-2.5 text-sm">
                 @if ($category->image)
-                    <img src="{{ asset('uploads/'.$category->image) }}" class="mt-2 w-16 h-16 object-cover rounded-lg">
+                    <img src="{{ $category->imageUrl() }}" class="mt-2 w-16 h-16 object-cover rounded-lg">
                 @endif
             </div>
             <div>

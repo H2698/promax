@@ -66,7 +66,7 @@
 
 <div class="flex flex-col md:flex-row gap-10 md:gap-14 px-6 md:px-16 pb-16 md:pb-24 items-center">
     @if ($featuredProducts->first()?->primaryImage())
-        <img src="{{ asset('uploads/'.$featuredProducts->first()->primaryImage()->path) }}" class="w-full md:w-[400px] h-[300px] md:h-[420px] rounded-3xl bg-cream object-contain p-5">
+        <img src="{{ $featuredProducts->first()->primaryImage()->url() }}" class="w-full md:w-[400px] h-[300px] md:h-[420px] rounded-3xl bg-cream object-contain p-5">
     @endif
     <div class="flex-1">
         <div class="text-gold text-[13px] font-extrabold tracking-wide uppercase mb-2">{{ __('storefront.about_label') }}</div>

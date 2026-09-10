@@ -7,7 +7,7 @@
 
 <div class="group">
     <a href="{{ route('shop.product', $product->slug) }}" class="block relative bg-cream rounded-[20px] aspect-square overflow-hidden mb-3.5">
-        <div class="w-full h-full bg-center bg-contain bg-no-repeat" @if($image) style="background-image:url('{{ asset('uploads/'.$image->path) }}')" @endif></div>
+        <div class="w-full h-full bg-center bg-contain bg-no-repeat" @if($image) style="background-image:url('{{ $image->url() }}')" @endif></div>
         <button type="button" data-wishlist-toggle="{{ $product->id }}"
                 class="absolute top-3.5 right-3.5 w-[34px] h-[34px] bg-white rounded-full flex items-center justify-center">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="1.8"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"></path></svg>

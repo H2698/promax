@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreCategoryRequest;
 use App\Http\Requests\Admin\UpdateCategoryRequest;
 use App\Models\Category;
+use App\Services\ImageUploadService;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class CategoryController extends Controller
@@ -56,7 +56,7 @@ class CategoryController extends Controller
 
         if ($image = $this->storeImage($request)) {
             if ($category->image) {
-                Storage::disk('uploads')->delete($category->image);
+                app(ImageUploadService::class)->delete($category->image);
             }
             $data['image'] = $image;
         }
@@ -75,7 +75,7 @@ class CategoryController extends Controller
         }
 
         if ($category->image) {
-            Storage::disk('uploads')->delete($category->image);
+            app(ImageUploadService::class)->delete($category->image);
         }
 
         $category->delete();
@@ -89,6 +89,6 @@ class CategoryController extends Controller
             return null;
         }
 
-        return $request->file('image')->store('categories', 'uploads');
+        return app(ImageUploadService::class)->store($request->file('image'), 'categories');
     }
 }

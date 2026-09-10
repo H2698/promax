@@ -126,7 +126,7 @@
             <div class="grid grid-cols-4 gap-4">
                 @forelse ($product->images as $image)
                     <div class="border border-border-light rounded-xl p-3">
-                        <div class="aspect-square bg-cream rounded-lg bg-center bg-contain bg-no-repeat mb-2" style="background-image:url('{{ asset('uploads/'.$image->path) }}')"></div>
+                        <div class="aspect-square bg-cream rounded-lg bg-center bg-contain bg-no-repeat mb-2" style="background-image:url('{{ $image->url() }}')"></div>
                         <form method="POST" action="{{ route('admin.products.images.update', [$product, $image]) }}" class="mb-1.5">
                             @csrf @method('PATCH')
                             <select name="product_color_id" onchange="this.form.submit()" class="w-full text-[11.5px] border border-border rounded-lg px-2 py-1.5 mb-1.5">
