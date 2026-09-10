@@ -102,7 +102,7 @@
             <input type="file" name="images[]" accept="image/*" multiple class="w-full border border-border rounded-xl px-4 py-2.5 text-sm">
         </div>
 
-        <div class="flex gap-6 mb-7">
+        <div class="flex flex-wrap gap-6 mb-3">
             <label class="flex items-center gap-2 text-[13px] font-semibold">
                 <input type="checkbox" name="is_active" value="1" @checked(old('is_active', $product->exists ? $product->is_active : true)) class="rounded border-border">
                 {{ __('admin.active') }}
@@ -111,7 +111,13 @@
                 <input type="checkbox" name="is_featured" value="1" @checked(old('is_featured', $product->is_featured)) class="rounded border-border">
                 {{ __('admin.featured') }}
             </label>
+            <label class="flex items-center gap-2 text-[13px] font-semibold">
+                <input type="hidden" name="is_on_podium" value="0">
+                <input type="checkbox" name="is_on_podium" value="1" @checked(old('is_on_podium', $product->is_on_podium)) aria-describedby="podium-help" class="rounded border-border">
+                {{ __('admin.on_podium') }}
+            </label>
         </div>
+        <p id="podium-help" class="text-[12px] text-muted mb-7">{{ __('admin.on_podium_help') }}</p>
 
         <div class="flex gap-3">
             <button type="submit" class="bg-ink text-white px-7 py-3.5 rounded-full text-sm font-bold">{{ __('admin.save') }}</button>

@@ -44,7 +44,11 @@
             <div class="absolute top-[14%] left-[10%] text-gold text-base opacity-50">✦</div>
             <div class="absolute bottom-[8%] right-[14%] text-gold text-[11px] opacity-60">✦</div>
             <img src="{{ asset('assets/podium-transparent.png') }}" class="absolute top-1/2 left-1/2 w-[420px] md:w-[602px]" style="transform:translate(-50%,-50%)">
-            <div id="hero-product-img" class="absolute top-1/2 left-1/2 bg-no-repeat bg-contain" style="background-position:bottom center;transition:transform 0.5s cubic-bezier(.4,0,.2,1), opacity 0.5s ease;"></div>
+            @if ($heroSlides->isNotEmpty())
+                <a id="hero-product-link" href="{{ $heroSlides->first()['url'] }}" class="absolute top-1/2 left-1/2 block" style="width:min(72%,360px);height:72%;max-height:350px;transform:translate(-50%,-80%);transition:opacity 0.5s ease;">
+                    <img id="hero-product-img" src="{{ $heroSlides->first()['image'] }}" alt="{{ $heroSlides->first()['name'] }}" class="w-full h-full object-contain object-bottom" fetchpriority="high">
+                </a>
+            @endif
         </div>
     </div>
 </div>
@@ -101,34 +105,35 @@
 
 <script>
 (function () {
-    const slides = @json($heroSlides);
+    const slides = {{ Illuminate\Support\Js::from($heroSlides) }};
     const el = document.getElementById('hero-product-img');
-    if (!el || slides.length === 0) return;
+    const link = document.getElementById('hero-product-link');
+    if (!el || !link || slides.length < 2 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     let idx = 0;
-
-    function render(phaseIn) {
-        const s = slides[idx];
-        const box = el.parentElement.parentElement;
-        const k = Math.min(1, box.clientHeight * 0.72 / s.width);
-        el.style.backgroundImage = `url('/assets/${s.image}')`;
-        el.style.width = Math.round(s.width*k) + 'px';
-        el.style.height = Math.round(s.width*k) + 'px';
-        el.style.transform = `translate(-50%, calc(-50% + ${Math.round(s.offset*k)}px)) scale(${phaseIn ? 1 : 0.96})`;
-        el.style.opacity = phaseIn ? 1 : 0;
-    }
-
-    render(true);
-
-    if (slides.length > 1) {
-        setInterval(() => {
-            render(false);
-            setTimeout(() => {
-                idx = (idx + 1) % slides.length;
-                render(true);
-            }, 500);
-        }, 4000);
-    }
+    let changing = false;
+    setInterval(async () => {
+        if (changing || document.hidden || link.matches(':hover, :focus-within')) return;
+        changing = true;
+        const next = (idx + 1) % slides.length;
+        const slide = slides[next];
+        const preload = new Image();
+        preload.src = slide.image;
+        try {
+            await preload.decode();
+            link.style.opacity = '0';
+            await new Promise(resolve => setTimeout(resolve, 500));
+            el.src = slide.image;
+            el.alt = slide.name;
+            link.href = slide.url;
+            idx = next;
+        } catch (_) {
+            // Keep the current product visible if the next photo cannot load.
+        } finally {
+            link.style.opacity = '1';
+            changing = false;
+        }
+    }, 4000);
 })();
 </script>
 @endsection

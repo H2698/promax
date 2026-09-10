@@ -89,6 +89,8 @@ return [
     'initial_colors_help' => 'Name:#hex, comma separated, e.g. Black:#111111',
     'images' => 'Images',
     'featured' => 'Featured',
+    'on_podium' => 'Show on the podium',
+    'on_podium_help' => 'The main photo appears on the homepage podium when the product is active and has an image. Multiple selected products rotate automatically.',
     'gallery' => 'Gallery',
     'no_color' => 'No color',
     'primary' => 'Primary',

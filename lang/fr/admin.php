@@ -89,6 +89,8 @@ return [
     'initial_colors_help' => 'Format Nom:#hex séparé par des virgules, ex : Noir:#111111',
     'images' => 'Images',
     'featured' => 'Mis en avant',
+    'on_podium' => 'Afficher sur le podium',
+    'on_podium_help' => 'La photo principale apparaît sur le podium de l’accueil si le produit est actif et possède une image. Plusieurs produits cochés défilent automatiquement.',
     'gallery' => 'Galerie',
     'no_color' => 'Aucune couleur',
     'primary' => 'Principale',

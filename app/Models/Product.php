@@ -25,6 +25,7 @@ class Product extends Model
         'sku',
         'is_active',
         'is_featured',
+        'is_on_podium',
         'meta_title',
         'meta_description',
     ];
@@ -36,6 +37,7 @@ class Product extends Model
             'compare_at_price' => 'decimal:3',
             'is_active' => 'boolean',
             'is_featured' => 'boolean',
+            'is_on_podium' => 'boolean',
         ];
     }
 

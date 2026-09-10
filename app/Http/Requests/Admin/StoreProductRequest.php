@@ -30,6 +30,7 @@ class StoreProductRequest extends FormRequest
             'sku' => ['nullable', 'string', 'max:100', Rule::unique('products', 'sku')],
             'is_active' => ['nullable', 'boolean'],
             'is_featured' => ['nullable', 'boolean'],
+            'is_on_podium' => ['nullable', 'boolean'],
             'meta_title' => ['nullable', 'string', 'max:255'],
             'meta_description' => ['nullable', 'string', 'max:255'],
             'sizes' => ['nullable', 'string', 'max:500'],

@@ -49,6 +49,7 @@ class ProductController extends Controller
         ]);
         $data['is_active'] = $request->boolean('is_active');
         $data['is_featured'] = $request->boolean('is_featured');
+        $data['is_on_podium'] = $request->boolean('is_on_podium');
 
         $product = Product::create($data);
 
@@ -83,6 +84,7 @@ class ProductController extends Controller
         ]);
         $data['is_active'] = $request->boolean('is_active');
         $data['is_featured'] = $request->boolean('is_featured');
+        $data['is_on_podium'] = $request->boolean('is_on_podium');
 
         $product->update($data);
 
