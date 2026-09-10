@@ -36,6 +36,7 @@ class HomeController extends Controller
                 'image' => $product->primaryImage()->url(),
                 'name' => $product->name,
                 'url' => route('shop.product', $product->slug),
+                'scale' => $product->slug === 'veste-teddy-noire-blanche-boston' ? 1.3 : 1,
             ])
             ->values();
 

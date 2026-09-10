@@ -29,7 +29,7 @@ class PodiumTest extends TestCase
 
     public function test_podium_uses_selected_active_products_and_their_main_photos(): void
     {
-        $first = $this->product('my-jeans', ['is_on_podium' => true]);
+        $first = $this->product('veste-teddy-noire-blanche-boston', ['is_on_podium' => true]);
         $second = $this->product('my-cap', ['is_on_podium' => true]);
         $first->images()->update(['is_primary' => false]);
         $first->images()->create(['path' => 'https://example.public.blob.vercel-storage.com/main.webp', 'is_primary' => true]);
@@ -44,6 +44,8 @@ class PodiumTest extends TestCase
         $this->assertSame('https://example.public.blob.vercel-storage.com/main.webp', $slides[0]['image']);
         $this->assertSame(route('shop.product', $first->slug), $slides[0]['url']);
         $this->assertSame($second->name, $slides[1]['name']);
+        $this->assertSame(1.3, $slides[0]['scale']);
+        $this->assertSame(1, $slides[1]['scale']);
         $response->assertSee('id="hero-product-img"', false);
     }
 

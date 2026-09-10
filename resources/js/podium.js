@@ -48,9 +48,12 @@ export async function initPodium() {
     const scene = layer.parentElement;
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     let currentPhoto;
+    let currentScale = slides[0].scale ?? 1;
 
     function position() {
         if (!currentPhoto) return;
+        // Reserve mobile headroom throughout the rotation so the text never overlaps a larger item.
+        scene.style.marginTop = window.innerWidth < 768 && slides.some(slide => slide.scale > 1) ? '32px' : '0px';
         const base = podium.getBoundingClientRect();
         const parent = layer.getBoundingClientRect();
         const stage = scene.getBoundingClientRect();
@@ -60,10 +63,14 @@ export async function initPodium() {
         const maxWidth = Math.min(base.width * 0.54 * 0.92, stage.width * 0.9);
         const maxHeight = Math.max(1, Math.min(stage.height * 0.7, surfaceY - stage.top - 24));
         const fit = fitSilhouette(currentPhoto.width, currentPhoto.height, currentPhoto.bounds, maxWidth, maxHeight);
+        // A larger product can use the space above the scene without revealing its clipped decorations.
+        const headroom = Math.ceil(Math.max(0, fit.height * currentScale - (surfaceY - stage.top))) + 2;
+        scene.style.overflow = currentScale > 1 ? 'visible' : 'hidden';
+        scene.style.clipPath = currentScale > 1 ? `inset(-${headroom}px 0 0)` : 'none';
         Object.assign(link.style, {
             left: `${base.left + base.width / 2 - parent.left}px`, top: `${surfaceY - parent.top}px`,
             width: `${fit.width}px`, height: `${fit.height}px`, maxHeight: 'none',
-            transform: 'translate(-50%, -100%)', overflow: 'hidden',
+            transform: `translate(-50%, -100%) scale(${currentScale})`, transformOrigin: '50% 100%', overflow: 'hidden',
         });
         Object.assign(image.style, {
             position: 'absolute', width: `${fit.imageWidth}px`, height: `${fit.imageHeight}px`,
@@ -102,6 +109,7 @@ export async function initPodium() {
             image.alt = slides[next].name;
             link.href = slides[next].url;
             currentPhoto = photo;
+            currentScale = slides[next].scale ?? 1;
             position();
         } catch {
             // Skip an unavailable photo and keep the last successful product visible.
