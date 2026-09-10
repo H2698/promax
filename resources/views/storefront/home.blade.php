@@ -43,7 +43,7 @@
             <div class="absolute bottom-[2%] right-[30%] text-gold text-[13px] opacity-55">⚡</div>
             <div class="absolute top-[14%] left-[10%] text-gold text-base opacity-50">✦</div>
             <div class="absolute bottom-[8%] right-[14%] text-gold text-[11px] opacity-60">✦</div>
-            <img id="hero-podium" src="{{ asset('assets/podium-transparent.png') }}" alt="" class="absolute top-1/2 left-1/2 w-[420px] md:w-[602px]" style="transform:translate(-50%,-50%)">
+            <img id="hero-podium" src="{{ asset('assets/podium-transparent.png') }}" alt="" class="absolute top-1/2 left-1/2 w-[420px] md:w-[602px]" style="max-width:94%;transform:translate(-50%,-50%) scale(1.5);transform-origin:50% 84%;">
             @if ($heroSlides->isNotEmpty())
                 <a id="hero-product-link" href="{{ $heroSlides->first()['url'] }}" class="absolute top-1/2 left-1/2 block" style="width:min(72%,360px);height:72%;max-height:350px;transform:translate(-50%,-80%);transition:opacity 0.5s ease;">
                     <img id="hero-product-img" src="{{ $heroSlides->first()['image'] }}" alt="{{ $heroSlides->first()['name'] }}" class="w-full h-full object-contain object-bottom" fetchpriority="high">
