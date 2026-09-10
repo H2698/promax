@@ -31,7 +31,7 @@
         </div>
     </div>
 
-    <div class="flex-1 relative h-[420px] md:h-[520px] w-full flex items-center justify-center overflow-hidden" style="perspective:1200px">
+    <div class="flex-none md:flex-1 relative h-[420px] md:h-[520px] w-full flex items-center justify-center overflow-hidden" style="perspective:1200px">
         <div class="absolute inset-0" style="transform:translateY(75px)">
             <div class="absolute top-[38%] left-[38%] w-[260px] h-[260px] rounded-full bg-[#F4E6C8] opacity-55" style="transform:translate(-50%,-50%)"></div>
             <div class="absolute top-1/2 left-1/2 w-[360px] h-[300px] border border-dashed border-[#E7C878] rounded-full opacity-45" style="transform:translate(-50%,-50%) rotate(-8deg)"></div>
