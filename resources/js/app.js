@@ -1,4 +1,5 @@
 import './bootstrap';
+import { initPodium } from './podium';
 
 const WISHLIST_KEY = 'power_wishlist';
 
@@ -25,6 +26,7 @@ function paintWishlistButtons() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    initPodium();
     const toggle = document.querySelector('[data-search-toggle]');
     const panel = document.querySelector('[data-search-panel]');
 
