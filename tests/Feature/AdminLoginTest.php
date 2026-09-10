@@ -62,6 +62,26 @@ class AdminLoginTest extends TestCase
         $this->assertAuthenticatedAs($admin, 'admin');
     }
 
+    public function test_signed_in_admin_opening_login_returns_to_the_admin_dashboard(): void
+    {
+        $admin = Admin::create([
+            'name' => 'Admin',
+            'email' => 'admin@example.test',
+            'password' => 'test-password-only',
+        ]);
+
+        $this->actingAs($admin, 'admin')
+            ->get('/admin/login')
+            ->assertRedirect(route('admin.dashboard'));
+    }
+
+    public function test_guest_opening_admin_is_redirected_to_the_login_form(): void
+    {
+        $this->get('/admin')->assertRedirect(route('admin.login'));
+        $this->get('/admin/login')->assertOk()->assertSee('name="password"', false);
+        $this->assertGuest('admin');
+    }
+
     public function test_json_login_keeps_the_csrf_error_response(): void
     {
         $this->postJson('/admin/login', ['_token' => 'invalid'])->assertStatus(419);

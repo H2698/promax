@@ -29,7 +29,10 @@ return Application::configure(basePath: dirname(__DIR__))
             SetLocale::class,
         ]);
         $middleware->redirectGuestsTo(fn ($request) => $request->is('admin*')
-                                      ? route('admin.login')
+            ? route('admin.login')
+            : route('home'));
+        $middleware->redirectUsersTo(fn (Request $request) => $request->routeIs('admin.*')
+            ? route('admin.dashboard')
             : route('home'));
     })
     ->withExceptions(function (Exceptions $exceptions): void {
