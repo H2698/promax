@@ -6,14 +6,15 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\AdminLoginRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\View\View;
 
 class AuthController extends Controller
 {
-    public function showLoginForm(): View
+    public function showLoginForm(): Response
     {
-        return view('admin.auth.login');
+        return response()->view('admin.auth.login')
+            ->header('Cache-Control', 'no-store, private');
     }
 
     public function login(AdminLoginRequest $request): RedirectResponse

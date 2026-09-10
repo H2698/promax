@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'session_expired' => 'Your session has expired. Please enter your credentials again to sign in.',
     'login' => 'Login',
     'login_subtitle' => 'Admin area',
     'login_button' => 'Sign in',

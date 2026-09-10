@@ -2,6 +2,7 @@
 
 return [
     'login' => 'Connexion',
+    'session_expired' => 'Votre session a expiré. Veuillez saisir à nouveau vos identifiants pour vous connecter.',
     'login_subtitle' => 'Espace administrateur',
     'login_button' => 'Se connecter',
     'login_failed' => 'Identifiants incorrects.',
@@ -186,7 +187,7 @@ return [
     'marketing_meta_title' => 'Meta Pixel & API de conversion',
     'marketing_meta_help' => 'Renseignez votre ID de pixel Meta et votre jeton API de conversion pour activer le suivi ViewContent, AddToCart, InitiateCheckout et Purchase.',
     'marketing_pixel_id' => 'ID du Pixel Meta',
-    'marketing_capi_token' => "Jeton API de conversion",
+    'marketing_capi_token' => 'Jeton API de conversion',
     'marketing_events_summary' => 'Résumé des événements',
     'marketing_recent_events' => 'Événements récents',
     'marketing_event' => 'Événement',
